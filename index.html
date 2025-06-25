@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Delivery</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Templates -->
+    <template id="dish-template">
+        <div class="dish-card">
+            <img src="" alt="" class="dish-image">
+            <div class="dish-info">
+                <div class="rating-stars"></div>
+                <h3 class="dish-title"></h3>
+                <h5 class="dish-category"></h5>
+                <p class="dish-description"></p>
+                <div class="cart-controls">
+                    <div class="dish-price"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="quantity-template">
+        <div class="quantity-controls">
+            <button class="quantity-btn decrease" data-id="">-</button>
+            <span class="quantity-display" id=""></span>
+            <button class="quantity-btn increase" data-id="">+</button>
+        </div>
+    </template>
+
+    <template id="add-cart-template">
+        <button class="add-to-cart-btn" data-id="">Add to Cart</button>
+    </template>
+
+    <template id="rating-modal-template">
+        <div id="rating-modal-overlay" class="modal-overlay">
+            <div class="modal-content">
+                <button class="close-btn">&times;</button>
+                <h3>Rate this dish</h3>
+                <div class="modal-stars"></div>
+                <button class="submit-rating-btn">Submit</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Filters -->
+    <div class="filters-container">
+        <div class="filter-group">
+            <span class="filter-label">Category:</span>
+            <div class="category-filters">
+                <label class="category-item">
+                    <input type="checkbox" name="category" value="Wok" />
+                    <span class="category-label">Wok</span>
+                </label>
+                <label class="category-item">
+                    <input type="checkbox" name="category" value="Pizza" />
+                    <span class="category-label">Pizza</span>
+                </label>
+                <label class="category-item">
+                    <input type="checkbox" name="category" value="Soup" />
+                    <span class="category-label">Soup</span>
+                </label>
+                <label class="category-item">
+                    <input type="checkbox" name="category" value="Dessert" />
+                    <span class="category-label">Dessert</span>
+                </label>
+                <label class="category-item">
+                    <input type="checkbox" name="category" value="Drink" />
+                    <span class="category-label">Drink</span>
+                </label>
+            </div>
+        </div>
+        <div class="filter-group">
+            <label class="filter-label">
+                <input type="checkbox" id="vegetarian-filter" />
+                Vegetarian Only
+            </label>
+        </div>
+        <div class="filter-group">
+            <label class="filter-label">Sort By:</label>
+            <select id="sort-menu" class="styled-select">
+                <option value="none">None</option>
+                <option value="az">Name (A-Z)</option>
+                <option value="za">Name (Z-A)</option>
+                <option value="low-price">Price (Low-High)</option>
+                <option value="high-price">Price (High-Low)</option>
+                <option value="RatingAsc">Rating (Low-High)</option>
+                <option value="RatingDesc">Rating (High-Low)</option>
+            </select>
+        </div>
+        <div class="filter-buttons">
+            <button class="filter-btn" id="apply-filters">Apply</button>
+            <button class="filter-btn" id="clear-filters">Clear</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="dish-grid" id="dish-container"></div>
+        <div class="pagination-container" id="pagination-container">
+            <a href="#" id="prev-page">Prev</a>
+            <span id="page-numbers"></span>
+            <a href="#" id="next-page">Next</a>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../js/config.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script>
+        fetch('../navbar.html')
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+                initializeNavbar(); if (typeof updateAuthButton === 'function') updateAuthButton();
+            });
+    </script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

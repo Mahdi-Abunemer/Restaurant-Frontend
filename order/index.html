@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="../css/order.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Templates -->
+    <!-- Order item template -->
+    <template id="order-item-template">
+        <div class="order-item">
+            <img src="" alt="">
+            <div class="item-details">
+                <h3 class="item-name"></h3>
+                <p>Quantity: <span class="item-qty"></span></p>
+                <p>Price: $<span class="item-price"></span></p>
+                <p>Total: $<span class="item-total"></span></p>
+            </div>
+        </div>
+    </template>
+    <!-- No items template -->
+    <template id="no-items-template">
+        <p class="no-items">No items found in this order</p>
+    </template>
+    <!-- Error template -->
+    <template id="order-error-template">
+        <div class="error-message">
+            <i class='bx bx-error'></i>
+            <h3>Error Loading Order</h3>
+            <p class="error-text"></p>
+            <a href="../orders/" class="return-link">Return to Orders</a>
+        </div>
+    </template>
+
+    <main class="order-details">
+        <div class="order-header">
+            <h1>Order #<span id="orderId"></span></h1>
+            <div class="status" id="orderStatus"></div>
+        </div>
+
+        <div class="order-meta">
+            <div class="meta-item">
+                <i class='bx bx-time'></i>
+                <div>
+                    <h3>Order Time</h3>
+                    <p id="orderTime"></p>
+                </div>
+            </div>
+            <div class="meta-item">
+                <i class='bx bx-truck'></i>
+                <div>
+                    <h3>Delivery Time</h3>
+                    <p id="deliveryTime"></p>
+                </div>
+            </div>
+            <div class="meta-item">
+                <i class='bx bx-map'></i>
+                <div>
+                    <h3>Address</h3>
+                    <p id="deliveryAddress"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-items">
+            <h2>Items</h2>
+            <div class="items-list" id="itemsList"></div>
+        </div>
+
+        <div class="order-total">
+            <h2>Total: <span id="orderTotal"></span></h2>
+        </div>
+    </main>
+
+    <script>
+        fetch('../navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+                initializeNavbar();
+                if (typeof updateAuthButton === 'function') updateAuthButton();
+            });
+    </script>
+    <script src="../js/config.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="order.js"></script>
+</body>
+
+</html>

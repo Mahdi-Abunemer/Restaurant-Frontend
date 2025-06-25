@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Orders</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/orders.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Templates -->
+    <template id="loading-template">
+        <p class="info-message">Loading orders…</p>
+    </template>
+    <template id="login-prompt-template">
+        <p class="info-message">Please log in to see your orders.</p>
+    </template>
+    <template id="no-orders-template">
+        <p class="info-message">No previous orders found.</p>
+    </template>
+    <template id="error-orders-template">
+        <p class="error-message">Could not load orders. Please try again later.</p>
+    </template>
+
+    <header class="orders-header">
+        <h1>Previous orders</h1>
+    </header>
+
+    <main class="orders-container" id="orders-container"></main>
+
+    <script>
+        fetch('../navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+                initializeNavbar();
+                if (typeof updateAuthButton === 'function') updateAuthButton();
+            });
+    </script>
+    <script src="../js/config.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="orders.js"></script>
+</body>
+
+</html>

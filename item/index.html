@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Item - Food Delivery</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/item.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Star Rating Templates -->
+    <template id="star-full-template">
+        <i class="bx bxs-star star filled" data-value=""></i>
+    </template>
+    <template id="star-half-template">
+        <i class="bx bxs-star-half star half" data-value=""></i>
+    </template>
+    <template id="star-empty-template">
+        <i class="bx bx-star star" data-value=""></i>
+    </template>
+
+    <!-- Rating Modal Template -->
+    <template id="rating-modal-template">
+        <div id="rating-modal-overlay" class="modal-overlay">
+            <div class="modal-content">
+                <button class="close-btn">&times;</button>
+                <h3>Rate this dish</h3>
+                <div class="modal-stars"></div>
+                <button class="submit-rating-btn">Submit</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Menu Item Content -->
+    <main class="item-main-content">
+        <div class="item-container">
+            <div class="item-image-container">
+                <img id="dish-image" src="https://via.placeholder.com/400" alt="Dish Image" />
+            </div>
+            <div class="item-info">
+                <h2 id="dish-name">Dish Name</h2>
+                <p id="dish-category" class="item-category">Category</p>
+                <p id="dish-description">Dish description goes here.</p>
+                <p id="dish-price" class="item-price">$0.00</p>
+                <div class="dish-rating">
+                    <div id="rating-display" class="rating-display"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        fetch('../navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+                initializeNavbar();
+                if (typeof updateAuthButton === 'function') updateAuthButton();
+            });
+    </script>
+    <script src="../js/config.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="item.js"></script>
+</body>
+
+</html>

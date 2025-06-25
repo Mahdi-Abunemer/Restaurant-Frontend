@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ordering Page</title>
+    <link rel="stylesheet" href="../css/purchase.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <h1>Create Order</h1>
+
+        <!-- User Info -->
+        <section class="section info-section">
+            <h2>User Data</h2>
+            <div class="info-row"><strong>Phone:</strong> <span id="user-phone"></span></div>
+            <div class="info-row"><strong>Email:</strong> <span id="user-email"></span></div>
+        </section>
+
+        <!-- Delivery Info -->
+        <section class="section form-section">
+            <h2>Delivery Data</h2>
+            <label for="delivery-time">Delivery Time:</label>
+            <input type="datetime-local" id="delivery-time" required />
+            <label for="delivery-address">Address:</label>
+            <input type="text" id="delivery-address" placeholder="Enter delivery address" required />
+        </section>
+
+        <!-- Item List -->
+        <section class="section items-section">
+            <h2>Items</h2>
+            <div id="item-list"></div>
+            <div class="total">
+                <strong>Total:</strong> <span id="total-price">0 $</span>
+            </div>
+        </section>
+        <button id="confirm-order" class="confirm-btn">Confirm Order</button>
+    </main>
+
+    <!-- Templates -->
+    <template id="item-row-template">
+        <div class="item-row">
+            <img src="" alt="" />
+            <div class="item-details">
+                <div><strong class="item-name"></strong></div>
+                <div>Price: <span class="item-price"></span> $</div>
+                <div>Quantity: <span class="item-qty"></span></div>
+                <div>Total: <span class="item-total"></span> $</div>
+            </div>
+        </div>
+    </template>
+    <template id="empty-basket-template">
+        <p class="info-message">Your basket is empty.</p>
+    </template>
+
+    <script>
+        fetch('../navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+                initializeNavbar();
+                if (typeof updateAuthButton === 'function') updateAuthButton();
+            });
+    </script>
+    <script src="../js/config.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="purchase.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart - Food Delivery</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Cart‐item template -->
+    <template id="cart-item-template">
+        <div class="cart-item">
+            <img src="" alt="" class="cart-item-image" />
+            <div class="cart-item-info">
+                <h3 class="cart-item-title"></h3>
+                <p class="cart-item-price"></p>
+                <button class="remove-item-btn">Remove</button>
+            </div>
+            <div class="quantity-controls">
+                <button class="quantity-btn decrease">-</button>
+                <span class="quantity"></span>
+                <button class="quantity-btn increase">+</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Empty‐cart template -->
+    <template id="empty-cart-template">
+        <div class="empty-cart-message">
+            <i class='bx bx-cart'></i>
+            <p>Your cart is empty</p>
+            <a href="../../index.html" class="continue-shopping-btn">Continue Shopping</a>
+        </div>
+    </template>
+
+    <main class="cart-main">
+        <h1 class="cart-title">Your Shopping Cart</h1>
+        <div class="cart-items-container" id="cartItemsContainer"></div>
+
+        <div class="cart-summary">
+            <div class="total-section">
+                <span class="total-label">Total:</span>
+                <span class="total-amount" id="cartTotalPrice">0.00 $</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </main>
+
+    <script>
+        fetch('../navbar.html')
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+                initializeNavbar();
+                if (typeof updateAuthButton === 'function') updateAuthButton();
+            });
+    </script>
+    <script src="../js/config.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="cart.js"></script>
+</body>
+
+</html>

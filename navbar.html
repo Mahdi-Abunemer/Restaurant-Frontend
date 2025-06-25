@@ -1,0 +1,22 @@
+<nav class="navbar">
+    <div class="brand">
+        <a href="../index.html" class="main-page-link">Food Delivery</a>
+    </div>
+    <div class="nav-right">
+        <span class="user-email" id="userEmail">guest@example.com</span>
+        <div class="auth-links">
+            <!-- Visible when NOT logged in -->
+            <a href="../login/" class="auth-link" id="login-link">Login</a>
+            <a href="../registration/" class="auth-link" id="register-link">Register</a>
+            <!-- Visible when logged in -->
+            <a href="../profile/" class="auth-link" id="profile-link" style="display:none;">Profile</a>
+            <a href="../cart/" class="auth-link" id="cart-link" style="display:none;">Cart</a>
+            <a href="../orders/" class="auth-link" id="orders-link" style="display: none;">Orders</a>
+            <button class="auth-link" id="logout-button" style="display:none;">Logout</button>
+        </div>
+        <div class="cart-icon">
+            <i class='bx bx-cart' id="icon7"></i>
+            <span id="cartItemCount"></span>
+        </div>
+    </div>
+</nav>
